@@ -1,0 +1,7 @@
+{
+  "attr1": "value1",
+  "attr2": "value2",
+  "links": [
+    { "rel": "self", "href": "http://example.com" }
+  ]
+}

@@ -2,8 +2,16 @@ require 'json'
 
 module RESTful
   module Matchers
-    class HaveRestfulJsonLink
+    # Ensures that JSON response body has the given link.
+    #
+    # Example:
+    #   response.body.should have_json_link("self", "http://example.com")
+    #
+    def have_restful_json_link(rel, href)
+      HaveRestfulJsonLink.new(rel, href)
+    end
 
+    class HaveRestfulJsonLink
       def initialize(rel, href)
         @rel  = rel
         @href = href

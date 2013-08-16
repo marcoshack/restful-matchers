@@ -1,13 +1,13 @@
 # encoding: utf-8
 
 Gem::Specification.new do |gem|
-  gem.name    = "rspec-restful-matchers"
+  gem.name    = "restful-matchers"
   gem.version = "0.1"
 
   gem.authors     = [ "Marcos Hack" ]
   gem.email       = [ "marcoshack@gmail.com" ]
-  gem.summary     = "Easily handle RESTful resources in RSpec scenarios"
-  gem.description = "RSpec matchers for testing RESTful resource representations"
+  gem.summary     = "Easily handle RESTful resources in your tests"
+  gem.description = "RSpec matchers for testing RESTful resource link representations"
   gem.homepage    = "https://github.com/marcoshack/rspec-restful-matchers"
   gem.license     = "MIT"
 
