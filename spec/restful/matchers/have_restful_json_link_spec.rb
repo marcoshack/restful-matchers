@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RESTful::Matchers::HaveRestfulJsonLink do
   before :each do
-    @json_response = open("spec/fixtures/response.json").read
+    @json_response = open("spec/fixtures/json/resource.json").read
   end
 
   it "should find a json link" do
