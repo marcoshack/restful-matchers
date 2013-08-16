@@ -26,3 +26,13 @@ describe MyRestfulController do
   end
 end
 ```
+
+# Installation
+
+Add it to the `test` group in your Gemfile and be happy!
+
+```ruby
+group :test do
+  gem 'restful-matchers'
+end
+```
