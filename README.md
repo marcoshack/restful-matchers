@@ -4,8 +4,8 @@ RSpec matchers to test RESTful resource links. Currently it supports only JSON r
 
 ```json
 {
-  "attribute1": "value1"
-  "attribute2": "value2"
+  "attribute1": "value1",
+  "attribute2": "value2",
   "links": [
     { "rel": "self", "href": "http://example.com" }
   ]
