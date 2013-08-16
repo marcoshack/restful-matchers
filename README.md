@@ -1,4 +1,4 @@
-# restful-matchers [![Build Status](https://travis-ci.org/marcoshack/restful-matchers.png?branch=master)](https://travis-ci.org/marcoshack/restful-matchers)
+# restful-matchers [![Build Status](https://travis-ci.org/marcoshack/restful-matchers.png?branch=master)](https://travis-ci.org/marcoshack/restful-matchers) [![Code Climate](https://codeclimate.com/github/marcoshack/restful-matchers.png)](https://codeclimate.com/github/marcoshack/restful-matchers)
 
 RSpec matchers to test RESTful resource links. Currently it supports only JSON representations with an array of link objects with `rel` and `href` attributes, like this:
 
