@@ -1,4 +1,4 @@
-# restful-matchers
+# restful-matchers [![Build Status](https://travis-ci.org/marcoshack/restful-matchers.png?branch=master)](https://travis-ci.org/marcoshack/restful-matchers)
 
 ```ruby
 describe MyRestfulController do
