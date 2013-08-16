@@ -27,7 +27,7 @@ describe MyRestfulController do
 end
 ```
 
-# Installation
+## Installation
 
 Add it to the `test` group in your Gemfile and be happy!
 
