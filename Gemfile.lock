@@ -32,7 +32,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.0)
-  pry
-  pry-nav
+  pry (~> 0.9)
+  pry-nav (~> 0.2)
   rake (~> 10.0)
   restful-matchers!
