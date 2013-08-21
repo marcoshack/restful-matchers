@@ -1,11 +1,13 @@
 require 'json'
+require 'restful/parsers/json_link_parser'
 
 module RESTful
   module Matchers
     # Ensures that JSON response body has the given link.
     #
     # Example:
-    #   response.body.should have_json_link("self", "http://example.com")
+    #
+    #     response.body.should have_json_link("self", "http://example.com")
     #
     def have_link(rel, href = nil)
       HaveLink.new(rel, href)
@@ -20,7 +22,7 @@ module RESTful
 
       def matches?(content)
         @content = content
-        if links = parse_links_from(content)
+        if links = RESTful::Parsers::JSONLinkParser.parse(content)
           return @href ? links[@rel] == @href : links.has_key?(@rel)
         else
           return false
@@ -38,16 +40,6 @@ module RESTful
       private
       def error_message(message)
         "#{message} '{\"rel\": \"#{@rel}\", \"href\": \"#{@href || "<any>" }\"}' in '#{@content}'" 
-      end
-
-      def parse_links_from(content)
-        json =  content.is_a?(Hash) ? content : JSON.parse(content)
-        links = nil
-        if json["links"]
-          links = {}
-          json["links"].each { |link| links[link["rel"]] = link["href"] }
-        end
-        return links
       end
     end
   end
