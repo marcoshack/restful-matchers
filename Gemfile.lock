@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    restful-matchers (0.1)
+    restful-matchers (0.2.1)
       rspec (~> 2.0)
 
 GEM

@@ -7,40 +7,37 @@ module RESTful
     # Example:
     #   response.body.should have_json_link("self", "http://example.com")
     #
-    def have_restful_json_link(rel, href = nil)
-      HaveRestfulJsonLink.new(rel, href)
+    def have_link(rel, href = nil)
+      HaveLink.new(rel, href)
     end
-    alias_method :have_link, :have_restful_json_link
+    alias_method :have_restful_json_link, :have_link
 
-    class HaveRestfulJsonLink
+    class HaveLink
       def initialize(rel, href = nil)
         @rel  = rel
         @href = href
       end
 
       def matches?(content)
+        @content = content
         if links = parse_links_from(content)
           return @href ? links[@rel] == @href : links.has_key?(@rel)
         else
-          raise StandardError.new("JSON has no RESTful links")
+          return false
         end
       end
 
       def failure_message_for_should
-        "Expected RESTful link: #{link_representation}"
+        error_message "Expected RESTful link"
       end
 
       def failure_message_for_should_not
-        "Expected no RESTful link: #{link_representation}"
-      end
-
-      def description
-        "have RESTful link: #{link_representation}"
+        error_message "Expected no RESTful link"
       end
 
       private
-      def link_representation
-        "{ rel: #{@rel}, href: #{@href} }"
+      def error_message(message)
+        "#{message} '{\"rel\": \"#{@rel}\", \"href\": \"#{@href || "<any>" }\"}' in '#{@content}'" 
       end
 
       def parse_links_from(content)
