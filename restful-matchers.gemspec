@@ -8,14 +8,12 @@ Gem::Specification.new do |gem|
   gem.email       = [ "marcoshack@gmail.com" ]
   gem.summary     = "RSpec matchers to test RESTful HATEOAS-compliant resource links."
   gem.description = "RSpec matchers to test RESTful HATEOAS-compliant resource links. Currently it supports only JSON representations as an array of link objects with rel and href attributes."
-  gem.homepage    = "https://github.com/marcoshack/rspec-restful-matchers"
+  gem.homepage    = "https://github.com/marcoshack/restful-matchers"
   gem.license     = "MIT"
 
   gem.add_dependency "rspec", "~> 2.0"
 
   gem.add_development_dependency "bundler", "~> 1.0"
-  gem.add_development_dependency "pry", "~> 0.9"
-  gem.add_development_dependency "pry-nav", "~> 0.2"
 
   gem.files         = `git ls-files`.split($\)
   gem.test_files    = gem.files.grep(/^(test)/)
