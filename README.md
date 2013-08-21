@@ -5,7 +5,7 @@ RSpec matchers to test RESTful HATEOAS-compliant resource links. Currently it su
 
 ## Usage
 
-Given the following JSON response:
+Given the following JSON object, with links represented as an array of `{rel: ... , href: ...}` objects:
 
 ```json
 {
@@ -17,7 +17,7 @@ Given the following JSON response:
 }
 ```
 
-You can match links represented as an array of `{rel: ... , href: ...}` objects named as `links`:
+You can match those links using `have_link` matcher as follow:
 
 ```ruby
 describe MyRestfulController do
