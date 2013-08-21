@@ -2,6 +2,11 @@
 
 RSpec matchers to test RESTful HATEOAS-compliant resource links. Currently it supports only JSON representations as an array of link objects with `rel` and `href` attributes, like this:
 
+
+## Usage
+
+Given the following JSON response:
+
 ```json
 {
   "attribute1": "value1",
@@ -12,21 +17,20 @@ RSpec matchers to test RESTful HATEOAS-compliant resource links. Currently it su
 }
 ```
 
-Example:
+You can match links represented as an array of `{rel: ... , href: ...}` objects named as `links`:
 
 ```ruby
 describe MyRestfulController do
   render_views
 
-  it "should have entry-point links" do
+  it "should have links" do
     get :index
+    
     response.body.should have_link "resource1", "http://example.com/resource1"
     response.body.should have_link "resource2", "http://example.com/resource1"
-  end
 
-  it "should have self link, no matter its href" do
     parsed_json = JSON.parse(response.body) # you can match both raw or parsed (hash) JSON
-    parsed_json.should have_link "resource2"
+    parsed_json.should have_link "self"     # href attribute is optional
   end
 end
 ```
