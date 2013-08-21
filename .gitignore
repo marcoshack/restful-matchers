@@ -1,1 +1,3 @@
 restful-matchers-*.gem
+.bundle
+vendor
