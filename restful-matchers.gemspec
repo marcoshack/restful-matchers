@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |gem|
   gem.name    = "restful-matchers"
-  gem.version = "0.1"
+  gem.version = "0.2.0"
 
   gem.authors     = [ "Marcos Hack" ]
   gem.email       = [ "marcoshack@gmail.com" ]
