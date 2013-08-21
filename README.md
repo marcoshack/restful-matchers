@@ -20,9 +20,13 @@ describe MyRestfulController do
 
   it "should have entry-point links" do
     get :index
-    response.body.should have_restful_json_link("self", "http://example.com")
-    response.body.should have_restful_json_link("resource1", "http://example.com/resource1")
-    response.body.should have_restful_json_link("resource2", "http://example.com/resource2")
+    response.body.should have_link "resource1", "http://example.com/resource1"
+    response.body.should have_link "resource2", "http://example.com/resource1"
+  end
+
+  it "should have self link, no matter its href" do
+    parsed_json = JSON.parse(response.body) # you can match both raw or parsed (hash) JSON
+    parsed_json.should have_link "resource2"
   end
 end
 ```
