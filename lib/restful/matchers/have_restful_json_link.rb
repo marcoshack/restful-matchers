@@ -10,6 +10,7 @@ module RESTful
     def have_restful_json_link(rel, href)
       HaveRestfulJsonLink.new(rel, href)
     end
+    alias_method :have_link, :have_restful_json_link
 
     class HaveRestfulJsonLink
       def initialize(rel, href)
@@ -17,8 +18,8 @@ module RESTful
         @href = href
       end
 
-      def matches?(json_string)
-        if links = parse_links(json_string)
+      def matches?(content)
+        if links = parse_links_from(content)
           return links[@rel] == @href
         else
           raise StandardError.new("JSON has no RESTful links")
@@ -42,8 +43,8 @@ module RESTful
         "{ rel: #{@rel}, href: #{@href} }"
       end
 
-      def parse_links(json_string)
-        json = JSON.parse(json_string)
+      def parse_links_from(content)
+        json =  content.is_a?(Hash) ? content : JSON.parse(content)
         links = nil
         if json["links"]
           links = {}
