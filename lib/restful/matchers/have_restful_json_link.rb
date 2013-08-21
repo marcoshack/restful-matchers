@@ -7,20 +7,20 @@ module RESTful
     # Example:
     #   response.body.should have_json_link("self", "http://example.com")
     #
-    def have_restful_json_link(rel, href)
+    def have_restful_json_link(rel, href = nil)
       HaveRestfulJsonLink.new(rel, href)
     end
     alias_method :have_link, :have_restful_json_link
 
     class HaveRestfulJsonLink
-      def initialize(rel, href)
+      def initialize(rel, href = nil)
         @rel  = rel
         @href = href
       end
 
       def matches?(content)
         if links = parse_links_from(content)
-          return links[@rel] == @href
+          return @href ? links[@rel] == @href : links.has_key?(@rel)
         else
           raise StandardError.new("JSON has no RESTful links")
         end

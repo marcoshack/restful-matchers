@@ -12,6 +12,10 @@ describe RESTful::Matchers::HaveRestfulJsonLink do
       @content.should_not have_restful_json_link("foo", "http://bar.com")
       @content.should_not have_link("foo", "http://bar.com")
     end
+
+    it "should find a link matching only the rel attribute" do
+      @content.should have_link("self")
+    end
   end
 
   context "when processing a JSON content" do
