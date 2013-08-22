@@ -57,3 +57,11 @@ Add it to the `test` group in your Gemfile and be happy!
 ```ruby
 gem 'restful-matchers', '~> 0.2', :group => :test
 ```
+
+## Changelog
+
+See [CHANGELOG](https://github.com/marcoshack/restful-matchers/blob/master/CHANGELOG.md).
+
+## License
+
+restful-matchers is Copyright © 2013 Marcos Hack. It is free software, and may be redistributed under the terms specified in the LICENSE file.
