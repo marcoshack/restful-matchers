@@ -21,14 +21,19 @@ module RESTful
     class HaveLinks
       def initialize(links)
         @match_links = {}
-        links.each do |link|
-          rel  = link[:rel]  || link["rel"]
-          href = link[:href] || link["href"]
-          if rel
-            @match_links[rel.to_s] = href
-          else
-            raise ::Errors::InvalidLink("Link has no `rel`: #{link}")
+
+        if links.is_a?(Array)
+          links.each do |link|
+            rel  = link[:rel]  || link["rel"]
+            href = link[:href] || link["href"]
+            if rel
+              @match_links[rel.to_s] = href
+            else
+              raise ::Errors::InvalidLink("Link has no `rel`: #{link}")
+            end
           end
+        else
+          raise ArgumentError.new("matcher expects an array of hashes containing `rel` and `href` keys as argument")
         end
       end
 
