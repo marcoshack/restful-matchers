@@ -1,10 +1,10 @@
 require 'spec_helper'
-require 'restful/parsers/json_link_parser'
+require 'restful/matchers/parsers/json_link_parser'
 
-describe RESTful::Parsers::JSONLinkParser do
+describe RESTful::Matchers::Parsers::JSONLinkParser do
   shared_examples_for "parser" do
     it "should parser links" do
-      links = RESTful::Parsers::JSONLinkParser.parse(content)
+      links = RESTful::Matchers::Parsers::JSONLinkParser.parse(content)
       links.keys.should include "self", "foo", "bar"
       links["self"].should == "http://example.com"
       links["foo" ].should == "http://example.com/foo"

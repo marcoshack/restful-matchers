@@ -1,5 +1,5 @@
 require 'json'
-require 'restful/parsers/json_link_parser'
+require 'restful/matchers/parsers'
 
 module RESTful
   module Matchers
@@ -15,36 +15,48 @@ module RESTful
     #     ])
     #
     def have_links(links)
-      HaveLinks.new(rel, href)
+      HaveLinks.new(links)
     end
 
     class HaveLinks
       def initialize(links)
-        @links = links
+        @match_links = {}
+        links.each do |link|
+          rel  = link[:rel]  || link["rel"]
+          href = link[:href] || link["href"]
+          if rel
+            @match_links[rel.to_s] = href
+          else
+            raise ::Errors::InvalidLink("Link has no `rel`: #{link}")
+          end
+        end
       end
 
       def matches?(content)
         @content = content
-        if links = RESTful::Parsers::JSONLinkParser.parse(content)
-          # TODO
-          # return @href ? links[@rel] == @href : links.has_key?(@rel)
+        @content_links = RESTful::Matchers::Parsers::JSONLinkParser.parse(content)
+        if @content_links
+          @content_links.each do |rel, href|
+            match = href ? @match_links[rel] == href : @match_links.has_key?(rel)
+            return false unless match
+          end
+          return true
         else
           return false
         end
       end
 
       def failure_message_for_should
-        error_message "Expected RESTful links"
+        "Expected links weren't found. #{content_and_match_links_message}"
       end
 
       def failure_message_for_should_not
-        error_message "Expected no RESTful links"
+        "Not expected links where found. #{content_and_match_links_message}"
       end
 
       private
-      def error_message(message)
-        # TODO
-        # "#{message} '{\"rel\": \"#{@rel}\", \"href\": \"#{@href || "<any>" }\"}' in '#{@content}'" 
+      def content_and_match_links_message
+        "Expect '#{@match_links}', but got '#{@content_links}'."
       end
     end
   end

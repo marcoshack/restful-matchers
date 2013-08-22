@@ -1,5 +1,5 @@
 require 'json'
-require 'restful/parsers/json_link_parser'
+require 'restful/matchers/parsers'
 
 module RESTful
   module Matchers
@@ -22,7 +22,7 @@ module RESTful
 
       def matches?(content)
         @content = content
-        if links = RESTful::Parsers::JSONLinkParser.parse(content)
+        if links = RESTful::Matchers::Parsers::JSONLinkParser.parse(content)
           return @href ? links[@rel] == @href : links.has_key?(@rel)
         else
           return false
