@@ -13,10 +13,11 @@ module RESTful
       HaveLink.new(rel, href)
     end
     alias_method :have_restful_json_link, :have_link
+    alias_method :have_restful_link, :have_link
 
     class HaveLink
       def initialize(rel, href = nil)
-        @rel  = rel
+        @rel  = rel.to_s
         @href = href
       end
 

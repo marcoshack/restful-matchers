@@ -6,11 +6,13 @@ describe RESTful::Matchers::HaveLinks do
     let(:content) { open("spec/fixtures/json/resource_with_links.json").read }
 
     it "should match an array of links using symbols as keys" do
-      content.should have_links([
+      expected_links = [
         { rel: "self", href: "http://example.com"     },
         { rel: "foo" , href: "http://example.com/foo" },
         { rel: "bar" , href: "http://example.com/bar" }
-      ])
+      ]
+      content.should have_links(expected_links)
+      content.should have_restful_links(expected_links)
     end
 
     it "should match an array of links using string as keys" do

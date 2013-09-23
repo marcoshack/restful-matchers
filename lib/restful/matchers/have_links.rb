@@ -17,6 +17,7 @@ module RESTful
     def have_links(links)
       HaveLinks.new(links)
     end
+    alias_method :have_restful_links, :have_links
 
     class HaveLinks
       def initialize(links)

@@ -6,6 +6,8 @@ describe RESTful::Matchers::HaveLink do
 
   it "should match a valid link" do
     @content.should have_link("self", "http://example.com")
+    @content.should have_restful_link("self", "http://example.com")
+    @content.should have_restful_json_link("self", "http://example.com")
   end
 
   it "should not match a non-existing link" do
